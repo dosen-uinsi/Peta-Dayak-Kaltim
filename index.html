@@ -1839,6 +1839,193 @@
       }
     }
 
+
+    /* Gambar KALTIM.png: ditempatkan langsung di dalam kotak peta bagian kiri bawah. */
+    .map-kaltim-illustration {
+      position: absolute;
+      left: 2.4%;
+      bottom: 3.7%;
+      z-index: 7;
+      width: clamp(112px, 19vw, 235px);
+      max-width: 29%;
+      pointer-events: none;
+      user-select: none;
+      line-height: 0;
+      padding: 4px;
+      background: rgba(255, 255, 255, 0.94) !important;
+      border: 1.6px solid #000000 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      filter: none !important;
+      overflow: hidden;
+    }
+
+    .map-kaltim-illustration img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+
+    @media (max-width: 620px) {
+      .map-kaltim-illustration {
+        left: 2%;
+        bottom: 3.4%;
+        width: clamp(86px, 29vw, 145px);
+        max-width: 34%;
+        padding: 3px;
+        border-width: 1.4px !important;
+        border-radius: 0 !important;
+      }
+    }
+
+  
+
+    /* Ilustrasi kapal dan laut: ukuran kecil, posisi laut tetap, pola gelombang bergerak ke samping. */
+    .map-ship-sea {
+      position: absolute;
+      right: 8.8%;
+      top: 63.0%;
+      z-index: 6;
+      width: clamp(52px, 9.6vw, 108px);
+      max-width: 13.5%;
+      pointer-events: none;
+      user-select: none;
+      line-height: 0;
+      opacity: 0.98;
+    }
+
+    .map-ship-sea svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      filter: drop-shadow(0 4px 9px rgba(15, 23, 42, 0.16));
+    }
+
+    .map-ship-sea #map-ship {
+      transform-origin: 400px 650px;
+      animation: mapShipBob 4s ease-in-out infinite;
+    }
+
+    @keyframes mapShipBob {
+      0% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-3px) rotate(-0.25deg); }
+      50% { transform: translateY(-6px) rotate(0.25deg); }
+      75% { transform: translateY(-3px) rotate(-0.16deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    .map-ship-sea #map-ship-water-back,
+    .map-ship-sea #map-ship-water-front {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      will-change: opacity;
+    }
+
+    .map-ship-sea #map-ship-water-back {
+      animation: mapShipWaveBackOpacity 3.8s ease-in-out infinite;
+    }
+
+    .map-ship-sea #map-ship-water-front {
+      animation: mapShipWaveFrontOpacity 2.8s ease-in-out infinite;
+    }
+
+    @keyframes mapShipWaveBackOpacity {
+      0%, 100% { opacity: 0.48; }
+      50% { opacity: 0.66; }
+    }
+
+    @keyframes mapShipWaveFrontOpacity {
+      0%, 100% { opacity: 0.94; }
+      50% { opacity: 1; }
+    }
+
+    .map-ship-sea .map-ship-water-shine {
+      animation: mapShipShineWave 2.6s ease-in-out infinite alternate;
+    }
+
+    .map-ship-sea .map-ship-wave-line {
+      animation: mapShipWaveLinePulse 2.2s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+
+    .map-ship-sea .map-ship-wave-line:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .map-ship-sea .map-ship-wave-line:nth-child(3) {
+      animation-delay: 1.1s;
+    }
+
+    @keyframes mapShipShineWave {
+      0% { transform: translateY(0px) scaleX(0.98); opacity: 0.34; }
+      100% { transform: translateY(-6px) scaleX(1.04); opacity: 0.78; }
+    }
+
+    @keyframes mapShipWaveLinePulse {
+      0% { transform: translateY(0px) scaleY(0.92); opacity: 0.28; }
+      100% { transform: translateY(-8px) scaleY(1.05); opacity: 0.82; }
+    }
+
+    .map-ship-sea .map-ship-smoke {
+      fill: #b8c3ca;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .map-ship-sea .map-ship-smoke-left {
+      animation: mapShipSmokeLeftRise 3.8s ease-out infinite;
+    }
+
+    .map-ship-sea .map-ship-smoke-right {
+      animation: mapShipSmokeRightRise 3.8s ease-out infinite;
+    }
+
+    .map-ship-sea .map-ship-smoke-1 { animation-delay: 0s; }
+    .map-ship-sea .map-ship-smoke-2 { animation-delay: 0.9s; }
+    .map-ship-sea .map-ship-smoke-3 { animation-delay: 1.8s; }
+    .map-ship-sea .map-ship-smoke-4 { animation-delay: 2.7s; }
+
+    @keyframes mapShipSmokeLeftRise {
+      0% { transform: translate(0px, 0px) scale(0.45); opacity: 0; }
+      20% { opacity: 0.55; }
+      65% { opacity: 0.35; }
+      100% { transform: translate(-24px, -95px) scale(1.8); opacity: 0; }
+    }
+
+    @keyframes mapShipSmokeRightRise {
+      0% { transform: translate(0px, 0px) scale(0.45); opacity: 0; }
+      20% { opacity: 0.55; }
+      65% { opacity: 0.35; }
+      100% { transform: translate(24px, -95px) scale(1.8); opacity: 0; }
+    }
+
+    @media (max-width: 620px) {
+      .map-ship-sea {
+        right: 7.8%;
+        top: 63.8%;
+        width: clamp(42px, 12.5vw, 68px);
+        max-width: 14%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .map-ship-sea #map-ship,
+      .map-ship-sea #map-ship-water-back,
+      .map-ship-sea #map-ship-water-front,
+      .map-ship-sea .map-ship-water-shine,
+      .map-ship-sea .map-ship-smoke {
+        animation: none !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1899,6 +2086,153 @@
             <span class="map-boundary-label west"><strong>Barat:</strong> Kalimantan Barat, Kalimantan Tengah, dan Sarawak Malaysia</span>
             <span class="map-boundary-label east"><strong>Timur:</strong> Laut Sulawesi dan Selat Makassar</span>
             <span class="map-boundary-label south"><strong>Selatan:</strong> Kalimantan Selatan</span>
+          </div>
+          <div class="map-ship-sea" aria-label="Ilustrasi kapal dan laut di bagian timur peta">
+            <svg viewBox="0 0 800 1000" role="img" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            
+                        <defs>
+                            <clipPath id="map-ship-left-half">
+                                <rect x="0" y="0" width="400" height="1000" />
+                            </clipPath>
+                        </defs>
+            
+                        <!-- KAPAL -->
+                        <g id="map-ship">
+            
+                            <!-- Asap kiri, tepat di atas corong kiri -->
+                            <g id="map-ship-left-smoke">
+                                <circle class="map-ship-smoke map-ship-smoke-left map-ship-smoke-1" cx="295" cy="165" r="15" />
+                                <circle class="map-ship-smoke map-ship-smoke-left map-ship-smoke-2" cx="298" cy="152" r="19" />
+                                <circle class="map-ship-smoke map-ship-smoke-left map-ship-smoke-3" cx="292" cy="145" r="23" />
+                                <circle class="map-ship-smoke map-ship-smoke-left map-ship-smoke-4" cx="300" cy="138" r="18" />
+                            </g>
+            
+                            <!-- Asap kanan, tepat di atas corong kanan -->
+                            <g id="map-ship-right-smoke">
+                                <circle class="map-ship-smoke map-ship-smoke-right map-ship-smoke-1" cx="505" cy="165" r="15" />
+                                <circle class="map-ship-smoke map-ship-smoke-right map-ship-smoke-2" cx="502" cy="152" r="19" />
+                                <circle class="map-ship-smoke map-ship-smoke-right map-ship-smoke-3" cx="508" cy="145" r="23" />
+                                <circle class="map-ship-smoke map-ship-smoke-right map-ship-smoke-4" cx="500" cy="138" r="18" />
+                            </g>
+            
+                            <!-- Dua corong saja: kiri dan kanan -->
+                            <g id="map-ship-funnels">
+                                <rect x="270" y="180" width="50" height="150" rx="10" fill="#FFD13B" />
+                                <rect x="480" y="180" width="50" height="150" rx="10" fill="#FFD13B" />
+            
+                                <g clip-path="url(#map-ship-left-half)">
+                                    <rect x="270" y="180" width="50" height="150" rx="10" fill="#EBB317" />
+                                    <rect x="480" y="180" width="50" height="150" rx="10" fill="#EBB317" />
+                                </g>
+            
+                                <rect x="270" y="180" width="50" height="150" rx="10" stroke="#181818" stroke-width="15" fill="none" />
+                                <rect x="480" y="180" width="50" height="150" rx="10" stroke="#181818" stroke-width="15" fill="none" />
+                            </g>
+            
+                            <!-- Badan utama kapal -->
+                            <g id="map-ship-main-body">
+            
+                                <polygon points="240,320 400,270 560,320 560,360 400,310 240,360" fill="#60B6E3" />
+            
+                                <polygon points="240,360 400,310 560,360 560,510 400,450 240,510" fill="#FFFFFF" />
+            
+                                <path d="M 120 620 Q 260 670 400 680 Q 540 670 680 620 C 680 560, 600 510, 560 510 L 400 450 L 240 510 C 200 510, 120 560, 120 620 Z" fill="#FFFFFF" />
+            
+                                <path d="M 160 760 Q 280 810 400 820 Q 520 810 640 760 C 660 700, 680 650, 680 620 Q 540 670 400 680 Q 260 670 120 620 C 120 650, 140 700, 160 760 Z" fill="#4CB0E3" />
+            
+                                <path d="M 220 890 Q 310 940 400 940 Q 490 940 580 890 C 600 840, 620 800, 640 760 Q 520 810 400 820 Q 280 810 160 760 C 180 800, 200 840, 220 890 Z" fill="#F0573A" />
+            
+                                <g clip-path="url(#map-ship-left-half)">
+                                    <polygon points="240,320 400,270 560,320 560,360 400,310 240,360" fill="#4298C5" />
+                                    <polygon points="240,360 400,310 560,360 560,510 400,450 240,510" fill="#D8EBF5" />
+                                    <path d="M 120 620 Q 260 670 400 680 Q 540 670 680 620 C 680 560, 600 510, 560 510 L 400 450 L 240 510 C 200 510, 120 560, 120 620 Z" fill="#D8EBF5" />
+                                    <path d="M 160 760 Q 280 810 400 820 Q 520 810 640 760 C 660 700, 680 650, 680 620 Q 540 670 400 680 Q 260 670 120 620 C 120 650, 140 700, 160 760 Z" fill="#3195C6" />
+                                    <path d="M 220 890 Q 310 940 400 940 Q 490 940 580 890 C 600 840, 620 800, 640 760 Q 520 810 400 820 Q 280 810 160 760 C 180 800, 200 840, 220 890 Z" fill="#D43F23" />
+                                </g>
+            
+                                <g stroke="#181818" stroke-width="15" stroke-linejoin="round" stroke-linecap="round" fill="none">
+                                    <path d="M 240 320 L 400 270 L 560 320" />
+                                    <path d="M 240 360 L 400 310 L 560 360" />
+                                    <line x1="240" y1="320" x2="240" y2="360" />
+                                    <line x1="560" y1="320" x2="560" y2="360" />
+                                    <line x1="400" y1="270" x2="400" y2="310" />
+            
+                                    <path d="M 240 510 L 400 450 L 560 510" />
+                                    <line x1="240" y1="360" x2="240" y2="510" />
+                                    <line x1="560" y1="360" x2="560" y2="510" />
+                                    <line x1="400" y1="310" x2="400" y2="450" />
+            
+                                    <path d="M 120 620 Q 260 670 400 680 Q 540 670 680 620" />
+                                    <path d="M 240 510 C 200 510, 120 560, 120 620" />
+                                    <path d="M 560 510 C 600 510, 680 560, 680 620" />
+                                    <line x1="400" y1="450" x2="400" y2="680" />
+            
+                                    <path d="M 160 760 Q 280 810 400 820 Q 520 810 640 760" />
+                                    <path d="M 120 620 C 120 650, 140 700, 160 760" />
+                                    <path d="M 680 620 C 680 650, 660 700, 640 760" />
+                                    <line x1="400" y1="680" x2="400" y2="820" />
+            
+                                    <path d="M 220 890 Q 310 940 400 940 Q 490 940 580 890" />
+                                    <path d="M 160 760 C 180 800, 200 840, 220 890" />
+                                    <path d="M 640 760 C 620 800, 600 840, 580 890" />
+                                    <line x1="400" y1="820" x2="400" y2="940" />
+                                </g>
+                            </g>
+            
+                            <!-- Jendela kapal -->
+                            <g fill="#585D61" stroke="#181818" stroke-width="12">
+                                <circle cx="295" cy="425" r="20" />
+                                <circle cx="355" cy="405" r="20" />
+                                <circle cx="445" cy="405" r="20" />
+                                <circle cx="505" cy="425" r="20" />
+                            </g>
+            
+                            <!-- Lubang kecil kapal -->
+                            <g fill="#181818">
+                                <circle cx="250" cy="710" r="14" />
+                                <circle cx="330" cy="730" r="14" />
+                                <circle cx="470" cy="730" r="14" />
+                                <circle cx="550" cy="710" r="14" />
+                            </g>
+            
+                        </g>
+            
+                        <!-- AIR BELAKANG - badan laut tetap diam, hanya puncak gelombang bergerak ke samping -->
+                        <g id="map-ship-water-back" opacity="0.55">
+                            <rect x="0" y="905" width="800" height="95" fill="#9BD8F2" />
+                            <path
+                                d="M -500 905 Q -450 875 -400 905 Q -350 935 -300 905 Q -250 875 -200 905 Q -150 935 -100 905 Q -50 875 0 905 Q 50 935 100 905 Q 150 875 200 905 Q 250 935 300 905 Q 350 875 400 905 Q 450 935 500 905 Q 550 875 600 905 Q 650 935 700 905 Q 750 875 800 905 Q 850 935 900 905 Q 950 875 1000 905 Q 1050 935 1100 905 Q 1150 875 1200 905 Q 1250 935 1300 905 L 1300 1000 L -500 1000 Z"
+                                fill="#9BD8F2"
+                            >
+                                <animateTransform
+                                  attributeName="transform"
+                                  type="translate"
+                                  values="0 0; 100 0; 0 0"
+                                  dur="4.4s"
+                                  repeatCount="indefinite" />
+                            </path>
+                        </g>
+            
+                        <!-- AIR DEPAN - badan laut tetap diam, puncak gelombang bergerak menyamping -->
+                        <g id="map-ship-water-front">
+                            <rect x="0" y="880" width="800" height="120" fill="#70C1E8" />
+                            <path
+                                d="M -500 875 Q -450 835 -400 875 Q -350 915 -300 875 Q -250 835 -200 875 Q -150 915 -100 875 Q -50 835 0 875 Q 50 915 100 875 Q 150 835 200 875 Q 250 915 300 875 Q 350 835 400 875 Q 450 915 500 875 Q 550 835 600 875 Q 650 915 700 875 Q 750 835 800 875 Q 850 915 900 875 Q 950 835 1000 875 Q 1050 915 1100 875 Q 1150 835 1200 875 Q 1250 915 1300 875 L 1300 1000 L -500 1000 Z"
+                                fill="#70C1E8"
+                                stroke="#181818"
+                                stroke-width="15"
+                                stroke-linejoin="round"
+                            >
+                                <animateTransform
+                                  attributeName="transform"
+                                  type="translate"
+                                  values="0 0; -100 0; 0 0"
+                                  dur="3.1s"
+                                  repeatCount="indefinite" />
+                            </path>
+                        </g>
+            
+                    </svg>
           </div>
           <div class="map-compass" aria-label="Ilustrasi kompas arah mata angin">
             <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
@@ -1962,6 +2296,9 @@
                 <circle cx="250" cy="250" r="5" class="compass-fill-teal compass-main-stroke compass-thin-stroke" />
               </g>
             </svg>
+          </div>
+          <div class="map-kaltim-illustration" aria-label="Gambar Kalimantan Timur">
+            <img src="https://raw.githubusercontent.com/dosen-uinsi/Peta-Dayak-Kaltim/refs/heads/main/KALTIM.png" alt="Gambar Kalimantan Timur" loading="eager" decoding="async" />
           </div>
           <svg class="map-overlay" viewBox="0 0 1000 977" aria-hidden="false">
           <defs>
