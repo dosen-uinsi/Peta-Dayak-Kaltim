@@ -2366,6 +2366,7 @@
       const mapMenuList = document.getElementById('map-menu-list');
       const regionInfographicPanel = document.getElementById('region-infographic-panel');
       const regionInfographicTitle = document.getElementById('region-infographic-title');
+      const regionInfographicKicker = document.querySelector('.region-infographic-kicker');
       const regionInfographicImage = document.getElementById('region-infographic-img');
       let activeRegion = null;
       let activeRegions = [];
@@ -2458,6 +2459,13 @@
         'bontang': {
           src: 'https://raw.githubusercontent.com/dosen-uinsi/Peta-Dayak-Kaltim/main/Kota%20Bontang.jpeg'
         }
+      };
+
+      const dayakTableInfographic = {
+        src: 'https://raw.githubusercontent.com/dosen-uinsi/Peta-Dayak-Kaltim/refs/heads/main/Tabel%20Dayak.jpeg',
+        title: 'Suku Dayak Kalimantan Timur',
+        kicker: 'Tabel Dayak',
+        alt: 'Tabel Dayak di Kalimantan Timur'
       };
 
 
@@ -2675,11 +2683,28 @@
           regionInfographicPanel.hidden = true;
           regionInfographicPanel.style.removeProperty('--active-infographic-color');
         }
+        if (regionInfographicKicker) {
+          regionInfographicKicker.textContent = 'Infografis Wilayah';
+        }
         if (regionInfographicImage) {
           regionInfographicImage.removeAttribute('src');
           regionInfographicImage.alt = '';
           regionInfographicImage.onerror = null;
         }
+      }
+
+      function showDayakTableInfographic() {
+        if (!regionInfographicPanel || !regionInfographicImage || !regionInfographicTitle) return;
+
+        regionInfographicPanel.hidden = false;
+        regionInfographicPanel.style.setProperty('--active-infographic-color', '#7c3aed');
+        if (regionInfographicKicker) {
+          regionInfographicKicker.textContent = dayakTableInfographic.kicker;
+        }
+        regionInfographicTitle.textContent = dayakTableInfographic.title;
+        regionInfographicImage.alt = dayakTableInfographic.alt;
+        regionInfographicImage.onerror = null;
+        regionInfographicImage.src = dayakTableInfographic.src;
       }
 
       function showRegionInfographic(regionId) {
@@ -2693,6 +2718,9 @@
         const regionColor = getRegionColor(regionId);
         regionInfographicPanel.hidden = false;
         regionInfographicPanel.style.setProperty('--active-infographic-color', regionColor);
+        if (regionInfographicKicker) {
+          regionInfographicKicker.textContent = 'Infografis Wilayah';
+        }
         regionInfographicTitle.textContent = regionName;
         regionInfographicImage.alt = `Infografis ${regionName}`;
         regionInfographicImage.onerror = null;
@@ -2735,7 +2763,11 @@
 
         applyRegionVisualState();
         updateActiveClip([]);
-        clearRegionInfographic();
+        if (activeMapMode === 'dayak') {
+          showDayakTableInfographic();
+        } else {
+          clearRegionInfographic();
+        }
 
         setMapTitle('Provinsi Kalimantan Timur', '', '');
 
@@ -2762,7 +2794,11 @@
 
         const regionName = getRegionName(regionId);
         setMapTitle(regionName, '', getRegionColor(regionId));
-        showRegionInfographic(regionId);
+        if (activeMapMode === 'dayak') {
+          showDayakTableInfographic();
+        } else {
+          showRegionInfographic(regionId);
+        }
 
         updateActiveClip(activeRegions);
         mapStage.classList.add('has-selection');
@@ -2790,7 +2826,7 @@
         const regionText = getRegionListText(activeRegions);
         const coloredRegionText = getColoredRegionListHtml(activeRegions);
         setMapTitle(dayak.name, `(${coloredRegionText})`, '', true, true);
-        clearRegionInfographic();
+        showDayakTableInfographic();
 
         updateActiveClip(activeRegions);
         mapStage.classList.add('has-selection');
